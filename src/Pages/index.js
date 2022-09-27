@@ -1,7 +1,18 @@
 import { useEffect } from 'react'
-import logo from './logo.svg'
-
+import styled from 'styled-components'
 import { gql, useQuery } from '@apollo/client'
+
+import Link from 'next/link'
+import Head from 'next/head'
+import logo from './logo.svg'
+import { Horizontal } from '../Components/Menu'
+
+const PageWrapper = styled.div`
+  padding: 25px;
+  height: 100%;
+  background-color: red;
+  min-height: 100vh;
+`
 
 const GET_USER = gql`
   query GetUsers {
@@ -36,40 +47,14 @@ async function asyncCall() {
   //=> `{data: '🦄'}`
 }
 
-function App() {
-  // useEffect(() => {
-  //   authListener()
-  // }, [])
-
-  // const { loading, error, data } = useQuery(GET_USER)
-
-  // if (loading) return 'Loading...'
-  // if (error) return `Error! ${error.message}`
-
-  // console.log(data)
-
-  // asyncCall().then(() => {
-  //   console.log('hurray!')
-  // })
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+export async function getStaticProps() {
+  return { props: { isDark: true } }
 }
 
-export default App
+export default function IndexPage(props) {
+  return (
+    <PageWrapper>
+      <Link href="/about">About page</Link>
+    </PageWrapper>
+  )
+}

@@ -1,1 +1,1 @@
-export { Menu } from './Menu'
+export { Horizontal } from './Horizontal'
